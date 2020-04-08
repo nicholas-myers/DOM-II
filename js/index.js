@@ -177,13 +177,13 @@ for (let i = 0; i < buttons.length; i++) {
 
 ///////////////////////// change footer background color on mouse move ////////////
 
-const footer = getOne("footer");
+const html = getOne("html");
 
 const changeFooterBackground = (event) => {
     const xPos = event.clientX;
     const yPos = event.clientY;
-    console.log(xPos);
-    console.log(yPos)
+    const zPos = xPos - yPos;
+    html.style.backgroundColor = `rgb(${xPos}, ${yPos}, ${zPos})`;
 };
 
-footer.addEventListener("mousemove", changeFooterBackground);
+window.addEventListener("mousemove", changeFooterBackground);
