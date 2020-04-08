@@ -145,6 +145,15 @@ const changeDestParText = (event) => {
         destPar.style.height = "100px";
     }; //close for
 };
+const resetDestParText = (event) => {
+    for(let i = 0; i < destPars.length; i++) {
+        const destPar = destPars[i];
+        destPar.textContent = "Expedition excursion design excursion fun, clean simple organized WordPress Travel colorful webdesign. Traveler blogger website design expedition clean excursion traveling.";
+        destPar.style.border = "";
+        destPar.style.textAlign = "";
+        destPar.style.height = "";
+    }; //close for
+};
 
 
 for(let i = 0; i < buttons.length; i++) {
@@ -153,6 +162,8 @@ for(let i = 0; i < buttons.length; i++) {
     button.addEventListener("drag", changeDestParText);
     button.style.cursor = "move";
     button.setAttribute("draggable", "true");
+    //EVENT 9
+    button.addEventListener("dragend", resetDestParText)
 };
 
 
