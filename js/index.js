@@ -49,7 +49,10 @@ for (let i = 0; i < links.length; i++) {
 /////////// CHANGE HEADER COLORS ON SCROLL //////////
 const header = getOne("header");
 const h1 = getOne("h1");
+h1.style.padding = "10px";
+h1.style.borderRadius = "10px";
 
+//EVENT 4
 const changeHeaderColors = (event) => {
     const randomNumber = (max) => {
         return Math.floor(Math.random() * Math.floor(max));
@@ -57,10 +60,42 @@ const changeHeaderColors = (event) => {
     //   console.log(randomNumber(100));
     const rgb1 = "rgb(" + randomNumber(200) + ", " + randomNumber(200) + ", " + randomNumber(200) + ")";
     const rgb2 = "rgb(" + randomNumber(300) + ", " + randomNumber(300) + ", " + randomNumber(300) + ")";
+    const rgb3 = "rgb(" + randomNumber(400) + ", " + randomNumber(400) + ", " + randomNumber(400) + ")";
     header.style.backgroundColor = rgb1;
     h1.style.color = rgb2;
-};
+    h1.style.backgroundColor = rgb3;
 
+};
+//EVENT 4
 window.addEventListener("scroll", changeHeaderColors);
 
-///////////////// 
+///////////////// Header IMage animation on Load /////////////////////
+const introImg = getOne('.intro img');
+introImg.style.borderRadius = "10px";
+introImg.style.padding = "100px";
+
+
+const introImgAnimation = (event) => {
+    introImg.style.padding = "";
+    introImg.style.borderRadius = "10px";
+    event.target.style.transition = "1s";
+    // console.log("I'm Happening");
+};
+//event 5
+introImg.addEventListener("load", introImgAnimation);
+
+//////////////////// Doubleclick Alert on Images //////////////////////
+
+const images = getAll("img");
+
+//event 6
+const imgAlert = (event) => {
+    alert("This is a great Destination!!");
+};
+
+for(let i = 0; i < images.length; i++) {
+    const image = images[i];
+    image.addEventListener("dblclick", imgAlert);
+};
+
+//////////////////
