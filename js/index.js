@@ -134,23 +134,25 @@ for (let i = 0; i < pars.length; i++) {
 
 ////////// DRAG and DROP ////////////////
 const buttons = getAll(".btn");
+const destPars = getAll(".destination p");
 
 const changeDestParText = (event) => {
-    const destPars = getAll(".destination p")
     for(let i = 0; i < destPars.length; i++) {
         const destPar = destPars[i];
-        destPar.textContent = "Drop Me Here!"
+        destPar.textContent = "Drop Me Here!";
+        destPar.style.border = "3px solid aqua";
+        destPar.style.textAlign = "center";
+        destPar.style.height = "100px";
     }; //close for
 };
 
+
 for(let i = 0; i < buttons.length; i++) {
     const button = buttons[i];
+    //EVENT 8
     button.addEventListener("drag", changeDestParText);
     button.style.cursor = "move";
-    button.style.position = "absolute";
+    button.setAttribute("draggable", "true");
 };
 
 
-
-
-/////////// keypress Event
