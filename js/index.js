@@ -117,53 +117,73 @@ for (let i = 0; i < images.length; i++) {
   image.addEventListener("dblclick", imgAlert);
 }
 
-////////////////// Change Text size when selcting ///////////////
+////////////////// Change Text size when moving mouse wheel over text or press down key ///////////////
 
 const pars = getAll("p");
 
 //event 7
-const enlargeParText = (event) => {
-  event.target.style.fontSize = `3rem`;
+const changeParText = (event) => {
+    const wheelPos = event.deltaY;
+    const currentFontSize = event.target.style.fontSize;
+    if(wheelPos < 0 && event.target.style.fontSize !== "100px") {
+        newFontSize =  parseInt(currentFontSize) + 10;
+    } else if (event.target.style.fontSize !== "10px") {
+         newFontSize = parseInt(currentFontSize) - 10;
+    }
+    event.target.style.fontSize = newFontSize + "px";
 };
 
 for (let i = 0; i < pars.length; i++) {
   const par = pars[i];
-  par.addEventListener("wheel", enlargeParText);
+  par.style.fontSize = "20px";
+  par.addEventListener("wheel", changeParText);
 }
-
 
 ////////// DRAG and DROP ////////////////
 const buttons = getAll(".btn");
 const destPars = getAll(".destination p");
 
 const changeDestParText = (event) => {
-    for(let i = 0; i < destPars.length; i++) {
-        const destPar = destPars[i];
-        destPar.textContent = "Drop Me Here!";
-        destPar.style.border = "3px solid aqua";
-        destPar.style.textAlign = "center";
-        destPar.style.height = "100px";
-    }; //close for
+  for (let i = 0; i < destPars.length; i++) {
+    const destPar = destPars[i];
+    destPar.textContent = "Drop Me Here!";
+    destPar.style.border = "3px solid aqua";
+    destPar.style.textAlign = "center";
+    destPar.style.height = "100px";
+  } //close for
 };
+
 const resetDestParText = (event) => {
-    for(let i = 0; i < destPars.length; i++) {
-        const destPar = destPars[i];
-        destPar.textContent = "Expedition excursion design excursion fun, clean simple organized WordPress Travel colorful webdesign. Traveler blogger website design expedition clean excursion traveling.";
-        destPar.style.border = "";
-        destPar.style.textAlign = "";
-        destPar.style.height = "";
-    }; //close for
+  for (let i = 0; i < destPars.length; i++) {
+    const destPar = destPars[i];
+    destPar.textContent =
+      "Expedition excursion design excursion fun, clean simple organized WordPress Travel colorful webdesign. Traveler blogger website design expedition clean excursion traveling.";
+    destPar.style.border = "";
+    destPar.style.textAlign = "";
+    destPar.style.height = "";
+  } //close for
 };
 
+for (let i = 0; i < buttons.length; i++) {
+  const button = buttons[i];
+  //EVENT 8
+  button.addEventListener("drag", changeDestParText);
+  button.style.cursor = "move";
+  button.setAttribute("draggable", "true");
+  //EVENT 9
+  button.addEventListener("dragend", resetDestParText);
+}
 
-for(let i = 0; i < buttons.length; i++) {
-    const button = buttons[i];
-    //EVENT 8
-    button.addEventListener("drag", changeDestParText);
-    button.style.cursor = "move";
-    button.setAttribute("draggable", "true");
-    //EVENT 9
-    button.addEventListener("dragend", resetDestParText)
+
+///////////////////////// change footer background color on mouse move ////////////
+
+const footer = getOne("footer");
+
+const changeFooterBackground = (event) => {
+    const xPos = event.clientX;
+    const yPos = event.clientY;
+    console.log(xPos);
+    console.log(yPos)
 };
 
-
+footer.addEventListener("mousemove", changeFooterBackground);
