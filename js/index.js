@@ -19,6 +19,9 @@ const linkHover = (event) => {
   event.target.style.color = "white";
 };
 
+const noReload = (event) => {
+    event.preventDefault();
+};
 // EVENT 2
 const linkExit = (event) => {
   event.target.style.backgroundColor = "lightblue";
@@ -44,6 +47,7 @@ for (let i = 0; i < links.length; i++) {
   link.addEventListener("mouseover", linkHover);
   link.addEventListener("mouseleave", linkExit);
   link.addEventListener("click", clickAnimation);
+  link.addEventListener("click", noReload);
 } //closes for
 
 /////////// CHANGE HEADER COLORS ON SCROLL //////////
@@ -86,9 +90,14 @@ const changeHeaderColors = (event) => {
   h1.style.color = rgb2;
   h1.style.backgroundColor = rgb3;
 };
+
+const h1Hover = (event) => {
+    event.target.style.backgroundColor = "white";
+};
+
 //EVENT 4
 window.addEventListener("scroll", changeHeaderColors);
-
+h1.addEventListener("mouseover", h1Hover);
 ///////////////// Header IMage animation on Load /////////////////////
 const introImg = getOne(".intro img");
 introImg.style.borderRadius = "10px";
