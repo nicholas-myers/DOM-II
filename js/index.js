@@ -54,32 +54,51 @@ h1.style.borderRadius = "10px";
 
 //EVENT 4
 const changeHeaderColors = (event) => {
-    const randomNumber = (max) => {
-        return Math.floor(Math.random() * Math.floor(max));
-      };
-    //   console.log(randomNumber(100));
-    const rgb1 = "rgb(" + randomNumber(200) + ", " + randomNumber(200) + ", " + randomNumber(200) + ")";
-    const rgb2 = "rgb(" + randomNumber(300) + ", " + randomNumber(300) + ", " + randomNumber(300) + ")";
-    const rgb3 = "rgb(" + randomNumber(400) + ", " + randomNumber(400) + ", " + randomNumber(400) + ")";
-    header.style.backgroundColor = rgb1;
-    h1.style.color = rgb2;
-    h1.style.backgroundColor = rgb3;
-
+  const randomNumber = (max) => {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
+  //   console.log(randomNumber(100));
+  const rgb1 =
+    "rgb(" +
+    randomNumber(200) +
+    ", " +
+    randomNumber(200) +
+    ", " +
+    randomNumber(200) +
+    ")";
+  const rgb2 =
+    "rgb(" +
+    randomNumber(300) +
+    ", " +
+    randomNumber(300) +
+    ", " +
+    randomNumber(300) +
+    ")";
+  const rgb3 =
+    "rgb(" +
+    randomNumber(400) +
+    ", " +
+    randomNumber(400) +
+    ", " +
+    randomNumber(400) +
+    ")";
+  header.style.backgroundColor = rgb1;
+  h1.style.color = rgb2;
+  h1.style.backgroundColor = rgb3;
 };
 //EVENT 4
 window.addEventListener("scroll", changeHeaderColors);
 
 ///////////////// Header IMage animation on Load /////////////////////
-const introImg = getOne('.intro img');
+const introImg = getOne(".intro img");
 introImg.style.borderRadius = "10px";
 introImg.style.padding = "100px";
 
-
 const introImgAnimation = (event) => {
-    introImg.style.padding = "";
-    introImg.style.borderRadius = "10px";
-    event.target.style.transition = "1s";
-    // console.log("I'm Happening");
+  introImg.style.padding = "";
+  introImg.style.borderRadius = "10px";
+  introImg.style.transition = "1s";
+  // console.log("I'm Happening");
 };
 //event 5
 introImg.addEventListener("load", introImgAnimation);
@@ -90,12 +109,48 @@ const images = getAll("img");
 
 //event 6
 const imgAlert = (event) => {
-    alert("This is a great Destination!!");
+  alert("This is a great Destination!!");
 };
 
-for(let i = 0; i < images.length; i++) {
-    const image = images[i];
-    image.addEventListener("dblclick", imgAlert);
+for (let i = 0; i < images.length; i++) {
+  const image = images[i];
+  image.addEventListener("dblclick", imgAlert);
+}
+
+////////////////// Change Text size when selcting ///////////////
+
+const pars = getAll("p");
+
+//event 7
+const enlargeParText = (event) => {
+  event.target.style.fontSize = `3rem`;
 };
 
-//////////////////
+for (let i = 0; i < pars.length; i++) {
+  const par = pars[i];
+  par.addEventListener("wheel", enlargeParText);
+}
+
+
+////////// DRAG and DROP ////////////////
+const buttons = getAll(".btn");
+
+const changeDestParText = (event) => {
+    const destPars = getAll(".destination p")
+    for(let i = 0; i < destPars.length; i++) {
+        const destPar = destPars[i];
+        destPar.textContent = "Drop Me Here!"
+    }; //close for
+};
+
+for(let i = 0; i < buttons.length; i++) {
+    const button = buttons[i];
+    button.addEventListener("drag", changeDestParText);
+    button.style.cursor = "move";
+    button.style.position = "absolute";
+};
+
+
+
+
+/////////// keypress Event
